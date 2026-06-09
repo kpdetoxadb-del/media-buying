@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Account Workflow Map · V2.1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F0EDE6;
+    --dark: #1A1A1A;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --daily-bg: #1A1500;
+    --daily-border: #C9A84C;
+    --weekly-blue: #1F4E79;
+    --weekly-light: #D5E8F0;
+    --monthly-teal: #1A3A32;
+    --monthly-light: #D5EDE7;
+    --quarterly-purple: #3B2A6B;
+    --quarterly-light: #EAE5F5;
+    --action-dark: #111827;
+    --red-alert: #C00000;
+    --border: rgba(0,0,0,0.12);
+    --tag-bg: #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    display: flex;
+    gap: 12px;
+    padding: 14px 48px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    flex-wrap: wrap;
+  }
+  .topbar span { color: #444; font-weight: 500; }
+
+  /* HERO */
+  .hero {
+    padding: 64px 48px 40px;
+    max-width: 800px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #C00000;
+  }
+  .hero p {
+    margin-top: 18px;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 48px;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    margin: 28px 48px;
+    background: var(--dark);
+    color: #ccc;
+    padding: 18px 22px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .disclaimer .icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .disclaimer strong { color: #fff; }
+
+  /* CADENCE LEGEND */
+  .cadence-legend { margin: 0 48px 32px; }
+  .cadence-legend-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .legend-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 150px;
+  }
+  .pill .pill-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .pill .pill-sub { font-size: 11px; font-weight: 400; opacity: 0.8; }
+  .pill-daily  { background: #FFF8E7; border: 1.5px solid var(--gold); color: #7A5C00; }
+  .pill-weekly { background: var(--weekly-light); border: 1.5px solid var(--weekly-blue); color: var(--weekly-blue); }
+  .pill-monthly { background: var(--monthly-light); border: 1.5px solid #2A6B5A; color: #1A4A3A; }
+  .pill-quarterly { background: var(--quarterly-light); border: 1.5px solid var(--quarterly-purple); color: var(--quarterly-purple); }
+
+  /* OPEN BLOCK */
+  .open-block {
+    margin: 0 48px 16px;
+    background: var(--dark);
+    color: #fff;
+    padding: 16px 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .open-block .arrow { color: var(--gold); font-size: 18px; }
+  .open-block .sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  .start-label {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: #bbb;
+    text-transform: uppercase;
+    padding: 12px;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: 22px 48px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .section-daily   { background: var(--daily-bg); color: #fff; }
+  .section-weekly  { background: var(--weekly-blue); color: #fff; }
+  .section-monthly { background: var(--monthly-teal); color: #fff; }
+  .section-quarterly { background: var(--quarterly-purple); color: #fff; }
+
+  .section-title-block { padding-bottom: 18px; }
+  .section-emoji { font-size: 18px; margin-right: 6px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .section-tagline {
+    font-style: italic;
+    font-size: 13px;
+    opacity: 0.85;
+    text-align: right;
+    max-width: 220px;
+    line-height: 1.5;
+    padding-bottom: 18px;
+  }
+
+  /* STEPS */
+  .steps-container {
+    margin: 0 48px 0;
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+  .step-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 220px;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-row:last-child { border-bottom: none; }
+
+  .step-num {
+    background: var(--cream);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ccc;
+    border-right: 1px solid var(--border);
+  }
+  .step-body {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .step-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .step-text { font-size: 13px; color: #333; line-height: 1.65; }
+  .step-text p { margin-bottom: 8px; }
+  .step-text p:last-child { margin-bottom: 0; }
+  .step-text strong { color: var(--dark); font-weight: 600; }
+  .step-text ul { margin: 6px 0 6px 18px; }
+  .step-text li { margin-bottom: 4px; }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .tag-red   { background: var(--red-alert); color: #fff; }
+  .tag-green { background: #1A4A3A; color: #fff; }
+  .tag-blue  { background: var(--weekly-blue); color: #fff; }
+
+  .action-col {
+    background: var(--action-dark);
+    color: #ddd;
+    padding: 16px 14px;
+  }
+  .action-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 7px;
+  }
+  .action-text { font-size: 12px; line-height: 1.6; color: #ccc; }
+  .action-text strong { color: #fff; }
+
+  /* PACING GATE BOX */
+  .pacing-gate {
+    margin: 0 48px;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: #FFF8E7;
+    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .pacing-gate-label {
+    grid-column: 1/-1;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .pacing-card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.55;
+    border-left: 3px solid #ccc;
+  }
+  .pacing-card.surge  { border-left-color: #2A6B5A; }
+  .pacing-card.baseline { border-left-color: var(--weekly-blue); }
+  .pacing-card.pullback { border-left-color: var(--red-alert); }
+  .pacing-card .pacing-title {
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .pacing-card.surge    .pacing-title { color: #2A6B5A; }
+  .pacing-card.baseline .pacing-title { color: var(--weekly-blue); }
+  .pacing-card.pullback .pacing-title { color: var(--red-alert); }
+
+  /* DIAGNOSTIC TREE */
+  .diag-tree {
+    margin: 0 48px;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: #FAFAFA;
+    padding: 20px 24px;
+  }
+  .diag-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 14px;
+  }
+  .diag-gate {
+    background: var(--dark);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .diag-arrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    margin: 4px 0 4px 14px;
+    display: block;
+  }
+  .diag-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .diag-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .diag-card .diag-card-title {
+    font-weight: 700;
+    font-size: 12.5px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .diag-card.high-cpc .diag-card-title { color: var(--red-alert); }
+  .diag-card.ok-cpc   .diag-card-title { color: #2A6B5A; }
+  .diag-rule {
+    margin-top: 14px;
+    background: var(--weekly-blue);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* WINNER CLASSIFICATION BOX */
+  .winner-box {
+    margin: 0 48px;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: #F7F7F7;
+    padding: 16px 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .winner-box-label {
+    grid-column: 1/-1;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .winner-card {
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.55;
+    border-top: 3px solid #ccc;
+  }
+  .winner-card.false-w  { border-top-color: var(--red-alert); }
+  .winner-card.low-p    { border-top-color: var(--gold); }
+  .winner-card.grand-s  { border-top-color: #2A6B5A; }
+  .winner-card .w-title {
+    font-weight: 700;
+    font-size: 12.5px;
+    margin-bottom: 5px;
+  }
+  .winner-card.false-w .w-title { color: var(--red-alert); }
+  .winner-card.low-p   .w-title { color: #7A5C00; }
+  .winner-card.grand-s .w-title { color: #1A4A3A; }
+
+  /* RULES */
+  .rules-block {
+    margin: 32px 48px;
+    background: var(--dark);
+    color: #fff;
+    border-radius: 4px;
+    padding: 24px 28px;
+  }
+  .rules-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .rule-card {
+    background: #2A2A2A;
+    border-radius: 3px;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .rule-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .rule-title { font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px; }
+  .rule-text  { color: #bbb; }
+
+  /* SECTION SPACER */
+  .section-gap { margin-bottom: 40px; }
+
+  /* FOOTER */
+  .footer {
+    margin: 40px 48px 48px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #aaa;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .hero, .steps-container, .open-block, .cadence-legend,
+    .disclaimer, .diag-tree, .pacing-gate, .rules-block,
+    .winner-box, .footer { margin-left: 16px; margin-right: 16px; }
+    .topbar { padding: 10px 16px; }
+    .hero { padding: 36px 16px 28px; }
+    .section-header { padding: 16px 16px 0; flex-direction: column; gap: 8px; }
+    .step-row { grid-template-columns: 32px 1fr; }
+    .action-col { grid-column: 1/-1; }
+    .diag-split, .pacing-gate, .winner-box, .rules-grid { grid-template-columns: 1fr; }
+    .section-tagline { text-align: left; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Ad Account Workflow Map
+  <span>·</span>
+  <span>V2.1</span>
+  <span>·</span>
+  Companion to Bulletproof SOP v2.1
+  <span>·</span>
+  Rocket Club Media
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Ad Account<br><em>Workflow Map</em></h1>
+  <p>Open the ad account. Follow the arrows. That's it. A step-by-step workflow for Meta ad performance analysis — what to read, what to diagnose, when to kill, when to scale.</p>
+</div>
+
+<hr class="divider">
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="icon">⚙</div>
+  <div>
+    <strong>Before you use any number in this workflow —</strong> the benchmarks below (2–3× CPA, CTR floors, hold rate targets) are starting references, not universal laws. The diagnostic logic never changes. The numbers are placeholders you replace with <strong>your account's top-performer medians</strong> after 30 days of data. Calibrate monthly (see Monthly Step 6).<br><br>
+    <strong>Companion file:</strong> Fresh Version v5.docx handles creative strategy — what to make and why. This workflow handles the media buying side — when to kill, when to scale, how to read the data, and how to set budgets. Metric reference: CF _ Ad Analysis Guide.
+  </div>
+</div>
+
+<!-- CADENCE LEGEND -->
+<div class="cadence-legend">
+  <div class="cadence-legend-label">Cadence Legend · Each step is color-coded by when you do it</div>
+  <div class="legend-pills">
+    <div class="pill pill-daily">
+      <div class="pill-title">★ DAILY</div>
+      <div class="pill-sub">5 min · every morning</div>
+    </div>
+    <div class="pill pill-weekly">
+      <div class="pill-title">📅 WEEKLY</div>
+      <div class="pill-sub">30–45 min · Monday</div>
+    </div>
+    <div class="pill pill-monthly">
+      <div class="pill-title">📆 MONTHLY</div>
+      <div class="pill-sub">60–90 min · 1st of month</div>
+    </div>
+    <div class="pill pill-quarterly">
+      <div class="pill-title">✦ QUARTERLY</div>
+      <div class="pill-sub">~2 hrs · start of quarter</div>
+    </div>
+  </div>
+</div>
+
+<!-- OPEN BLOCK -->
+<div class="open-block">
+  <span class="arrow">▶</span>
+  <div>
+    You open the ad account
+    <span class="sub">Motion → Meta Ads Manager</span>
+  </div>
+</div>
+<div class="start-label">↓ Start Here</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- DAILY                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-header section-daily">
+  <div class="section-title-block">
+    <div><span class="section-emoji">★</span><span class="section-title">Daily</span></div>
+    <div class="section-sub">5 minutes · every morning</div>
+  </div>
+  <div class="section-tagline">Your job in the morning is to <strong>notice, not fix.</strong> Spot movement. That's it.</div>
+</div>
+
+<div class="steps-container">
+
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Open Motion Leaderboard</div>
+      <div class="step-meta">Motion → Filter → Top Performers · 7D vs Prior 7D</div>
+      <div class="step-text">
+        <p>Sort by your Northstar metric — ROAS for D2C ecom, CPA for apps/subs/leads. Don't change the filter. Don't spiral. Just look at what's there.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">If top 10 is stable → continue to Step 2. If something wildly shifted → <strong>flag for Weekly deep-dive.</strong> Do not investigate now.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Scan the top 10 for a pattern</div>
+      <div class="step-meta">Eye-scan only · 4 seconds</div>
+      <div class="step-text">
+        <p>Ask: do my top 10 share a format (video / static / carousel)? A creator? A hook type? An EPIC category? An angle?</p>
+        <p>This tells you what the algorithm is currently rewarding.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">If top 10 converge on <strong>one pattern</strong> → this pattern is your next iteration batch's brief direction. add to Turning Dirt Into Gold - Account Intelligence column (Master file).</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Find the new entrant</div>
+      <div class="step-meta">Compare this week's top 10 vs last week's</div>
+      <div class="step-text">
+        <p>Any ad that jumped INTO the top 10 this week? That's a signal. A new winner tells you what the algorithm currently favors — a new EPIC category, a new execution style, a new hook type.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Study it — hook, body, CTA. Log the EPIC category and angle type. Add to Turning Dirt Into Gold - Account Intelligence column (Master file). Feed into next iteration batch brief.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">Kill / keep on test ads — Pacing Gate first</div>
+      <div class="step-meta">Testing Campaign · Check Day-of-Week Pacing Tracker before any kill</div>
+      <div class="step-text">
+        <p>Before touching any ad — check today's day classification in the <strong>Day-of-Week Pacing Multiplier Tracker.</strong></p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Kills happen NOW on Baseline/Surge days. On Pullback Days: <strong>reduce budget only. Do not touch ads.</strong> Graduations: any test ad hitting target at 2–3× CPA spend → classify winner type → move to scaling.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-title">Drop one note per shift noticed</div>
+      <div class="step-meta">Motion → Click Ad → Notes</div>
+      <div class="step-text">
+        <p>Future-you needs this. Three weeks from now you will not remember why you killed ad #417. One sentence. No more.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">"Killed – low CVR at $1.8k spend."<br>"Graduating – ROAS 2.4 at $900 spend, top 10 pattern match."<br>"False Winner – collapsed at 2× budget."</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PACING GATE -->
+<div class="pacing-gate">
+  <div class="pacing-gate-label">⚡ Day-of-Week Pacing Gate · Run before every kill/keep decision</div>
+  <div class="pacing-card surge">
+    <div class="pacing-title">↑ SURGE DAY (+20% vs avg)</div>
+    Apply normal kill gate. Also flag CBO budget <strong>+20% for tomorrow.</strong> Performance above average — let it run.
+  </div>
+  <div class="pacing-card baseline">
+    <div class="pacing-title">→ BASELINE DAY (±20% of avg)</div>
+    Apply normal kill gate. Any test ad that spent 2–3× target CPA without converting → kill. Any hitting target at spend threshold → classify and graduate.
+  </div>
+  <div class="pacing-card pullback">
+    <div class="pacing-title">↓ PULLBACK DAY (–20% vs avg)</div>
+    <strong>Do NOT kill any ad.</strong> Low performance is the auction, not the creative. Reduce CBO budget –20% for tomorrow. Mark all test ads WAIT. Come back tomorrow.
+  </div>
+</div>
+
+<div class="start-label section-gap">Daily Gate: Did something shift dramatically? → Flag for Weekly. No shift? → Close the laptop. Done.</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- WEEKLY                                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-header section-weekly">
+  <div class="section-title-block">
+    <div><span class="section-emoji">📅</span><span class="section-title">Weekly</span></div>
+    <div class="section-sub">30–45 minutes · Monday morning</div>
+  </div>
+  <div class="section-tagline">You shift from observer to diagnostician. <strong>Where real diagnosis happens.</strong></div>
+</div>
+
+<div class="steps-container">
+
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Filter for statistical significance</div>
+      <div class="step-meta">Motion → Add Filter: Spend ≥ 2–3× Target CPA</div>
+      <div class="step-text">
+        <p>Only ads above this filter are statistically significant. Everything below is noise — ignore it. This separates what's actually working from what just looks like it is.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Study only ads above the filter. Everything below: <strong>do not act on it yet.</strong> Let it spend to threshold first.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Diagnose under-performers + log ad blocks</div>
+      <div class="step-meta">See diagnostic tree below · Soft metrics first → hard metrics second · Pull data from Motion before starting</div>
+      <div class="step-text">
+        <p>Open Motion and pull each ad's metric data. Reference: <strong>CF _ Ad Analysis Guide</strong> for metric definitions, calculations, and what each number means before acting on it.</p>
+        <p>For each ad above spend threshold that's missing target, diagnose in this order — never jump steps:</p>
+        <ul>
+          <li><strong>Start with ROAS/CPA</strong> — is the ad profitable at all?</li>
+          <li><strong>Then Thumbstop rate</strong> — is the visual stopping the scroll?</li>
+          <li><strong>Then Hook rate</strong> — are people staying past 3 seconds?</li>
+          <li><strong>Then Hold rate</strong> — is the body holding attention?</li>
+          <li><strong>Then CTR</strong> — are people clicking? Low CTR with strong hook = CTA or offer frame problem.</li>
+          <li><strong>Then post-click CVR</strong> — if CTR is fine but CPA is high, the issue is on-page, not creative.</li>
+        </ul>
+        <p>After every diagnosed ad — winners AND losers — break it down by ad blocks and log validated blocks (or blocks with high retention) into the <strong>Building Blocks Repository.</strong> Any failure pattern that must not repeat gets logged in the <strong>Strategic Learning Note column</strong> in Sprint Planning - Concept Testing Tracker.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Every ad gets a diagnosis. Every winner and high-retention block → <strong>Building Blocks Repository.</strong> Every failure → update Sprint Planning - Concept Testing Tracker - Strategic Learning Note column (hypothesis, failure diagnosis, one-sentence rule). Map diagnosis to an iteration lever in the SOP.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Retention Graph Surgery on Fix candidates</div>
+      <div class="step-meta">Motion → Individual Ad View → Retention Graph</div>
+      <div class="step-text">
+        <p>For every ad diagnosed as needing a Fix iteration, run Retention Graph Surgery to find exactly where the drop happens:</p>
+        <ul>
+          <li><strong>0–3s drop:</strong> Hook problem → Ladder 1: Hook Refresh</li>
+          <li><strong>3s–25% drop:</strong> Lead problem → Ladder 2: Script Tightening (opening)</li>
+          <li><strong>25–50% drop:</strong> Body problem → Ladder 2: Script Tightening (middle)</li>
+          <li><strong>50–75% drop:</strong> Offer frame problem → Ladder 2: Script Tightening (offer)</li>
+          <li><strong>95%+ drop:</strong> CTA problem → rewrite last 3–7 seconds</li>
+        </ul>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Drop point tells you which Iteration Ladder level to pull. Write the Fix hypothesis: "If we execute [CHANGE] on [WINNER], then [METRIC] will improve because [RATIONALE]." One change. Rule of One.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">Hook rate check — Ugly Duckling scan</div>
+      <div class="step-meta">Motion → Hook Iteration Report</div>
+      <div class="step-text">
+        <p>Analyze Thumbstop rate vs ROAS across all active ads. Look for the Ugly Duckling: <strong>weak hook/hold rate BUT strong ROAS.</strong></p>
+        <p>Ugly Duckling = the message is correct, the execution needs a reshoot. Do NOT change the angle. Iterate the execution only.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Ugly Duckling found → brief a Hook Refresh (Ladder 1) or new caster (Ladder 3). Keep the script and angle <strong>identical.</strong> Note it as "execution problem, not message problem" in Turning Dirt Into Gold - Account Intelligence column (Master file).</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-title">Site experience check</div>
+      <div class="step-meta">Motion → GA · Site Metrics</div>
+      <div class="step-text">
+        <p>Bounce Rate, Time on Site, funnel drop-off. If the ad is clean but CVR is poor — it may be the site, not the creative.</p>
+        <ul>
+          <li>Drop-off at PDP + ATC → product page issue</li>
+          <li>Drop-off at ATC + Checkout → checkout friction</li>
+        </ul>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Flag post-click issues to dev. Do <strong>not</strong> brief more creative to fix a site problem. Log in diagnosis: "post-click issue, not creative."</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <div class="step-title">Classify winners + fill Execution Intelligence + update Building Blocks</div>
+      <div class="step-meta">See Winner Classification below</div>
+      <div class="step-text">
+        <p>Any ad that cleared the Validation Gate (2–3× Target CPA spend) this week gets classified. Run Pacing Gate check first.</p>
+        <p>After classification, fill Sprint Planning - Launched tab - 🧠 Execution Intelligence column for all variables: condition, persona, awareness, sophistication, EPIC, angle, execution insights. One sentence on what you did NOT know before.</p>
+        <p>For kills: log hypothesis, failure diagnosis, do-not-repeat sentence.</p>
+        <p><strong>Every winner and every block showing high retention</strong> — hook type, body structure, CTA format, visual style — gets logged into the <strong>Building Blocks Repository.</strong> This is the long-run compound asset that makes future briefs faster and your hit rate higher.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text"><strong>Grand Slam</strong> → graduate to CBO, begin Iteration Ladder 1–4 immediately.<br><strong>Low-Profile</strong> → keep in ABO at sweet spot, Ladder 1–2 only.<br><strong>False Winner</strong> → archive. Do not relaunch. Salvage validated blocks.<br><br>All validated blocks → <strong>Building Blocks Repository.</strong> All failure patterns → do-not-repeat log.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <div class="step-title">Plan next week's batch — Weekly Creative Meeting</div>
+      <div class="step-meta">30 min · Align with media buyer · Set the 20/60/20 mix</div>
+      <div class="step-text">
+        <p>Review Concept Testing Tracker before ideation. Set the week's mix based on account goals and 5-Phase position:</p>
+        <ul>
+          <li><strong>60% More/Fix iterations</strong> — winners multiplied or bottlenecks repaired</li>
+          <li><strong>20% Net New / Adapt / Expand</strong> (shared slot, split per weekly meeting) -- Net New: fresh concept from scratch; Adapt: production ascension graduation; Expand: new concept on validated Grand Slam foundation</li>
+        </ul>
+        <p>Which funnel to push is decided HERE, not by a rigid sequence. Media buyer input drives this decision based on account goals.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Document every planned ad with its hypothesis. Fill the Weekly Creative Direction Tracker. Hand briefs to production. Confirm naming convention for every ad before launch.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- WINNER CLASSIFICATION BOX -->
+<div class="winner-box">
+  <div class="winner-box-label">🏆 Winner Classification · Run after Validation Gate clears (2–3× Target CPA spend · Pacing Gate checked) · All validated blocks → Building Blocks Repository</div>
+  <div class="winner-card false-w">
+    <div class="w-title">❌ False Winner</div>
+    Looked great 24–72 hrs. Collapsed on budget increase. Do NOT relaunch. Salvage validated blocks (strong hook rate? extract it). Archive the ad. Do not invest iteration budget here.
+  </div>
+  <div class="winner-card low-p">
+    <div class="w-title">○ Low-Profile Winner</div>
+    Profitable at $50–200/day in ABO. Chokes in CBO. Keep at its sweet spot. Surgical iterations: Ladder 1–2 only. Fix one choke point at a time. Stack 10+ for stable base spend.
+  </div>
+  <div class="winner-card grand-s">
+    <div class="w-title">★ Grand Slam</div>
+    Scales aggressively. Holds KPI as budget increases. Graduate to CBO. Iterate all 4 Ladder levels. Scale with +20% Rule. Protect the original — don't "improve" it until it dies.
+  </div>
+</div>
+
+<!-- DIAGNOSTIC TREE -->
+<div class="diag-tree">
+  <div class="diag-label">Diagnostic Decision Tree · Weekly Step 2 · Run on every under-performer above spend threshold</div>
+  <div class="diag-gate">Gate 1 — Is the ad hitting ROAS / CPA target?</div>
+  <span class="diag-arrow">↓ NO, UNDER TARGET — has it spent 2–3× target CPA? If not, do nothing yet.</span>
+  <div class="diag-gate">Gate 2 — Thumbstop rate (3-second view rate)?</div>
+  <span class="diag-arrow">↓ Below 20% = Hook problem → Ladder 1: Hook Refresh (visual, text overlay, or audio — Rule of One)</span>
+  <div class="diag-gate">Gate 3 — Hook rate (5s views ÷ 3s views)?</div>
+  <span class="diag-arrow">↓ Below 30% = Hook is stopping scroll but not holding — qualify audience in first 3s or rework opening line</span>
+  <div class="diag-gate">Gate 4 — Hold rate (15s views ÷ 3s views)?</div>
+  <span class="diag-arrow">↓ Below 20% = Body problem → Ladder 2: Script Tightening. Run Retention Graph Surgery to find exact drop point.</span>
+  <div class="diag-gate">Gate 5 — CTR (link clicks ÷ impressions)?</div>
+  <div class="diag-split">
+    <div class="diag-card high-cpc">
+      <div class="diag-card-title">⬆ Low CTR (&lt;0.8%) → CTA / Offer Frame Problem</div>
+      Hook and body are holding people but they're not clicking. The offer, CTA, or relevance bridge is weak.<br><br>
+      <strong>Low CTR + high hold rate</strong> → Angle is resonating but offer is unclear. Tighten CTA, add urgency/scarcity, clarify the offer frame. Ladder 2: Script Tightening on the offer section.<br><br>
+      <strong>Low CTR + low hold rate</strong> → Angle is not resonating. Pivot to a new angle or condition.
+    </div>
+    <div class="diag-card ok-cpc">
+      <div class="diag-card-title">✓ CTR OK but CPA high → Post-Click Problem</div>
+      The ad is qualified and clicking, but the page is not converting.<br><br>
+      <strong>High CTR + high CPA</strong> → Ad and page are not congruent. Adjust messaging in ad to bridge gap with page headline, or consider a dedicated lander for this condition (Production Investment Ascension Stage 4).<br><br>
+      <strong>High CTR + low hook rate</strong> → Hook is qualifying well (fewer clicks but buyers). Keep angle, test new visual to open the audience wider.
+    </div>
+  </div>
+  <div class="diag-rule">The Rule: ROAS/CPA gate first → Thumbstop → Hook rate → Hold rate → CTR → post-click CVR. Always in that order. Never jump steps.</div>
+</div>
+
+<div class="start-label section-gap">↓ 1st of every month</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- MONTHLY                                    -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-header section-monthly">
+  <div class="section-title-block">
+    <div><span class="section-emoji">📆</span><span class="section-title">Monthly</span></div>
+    <div class="section-sub">60–90 minutes · 1st of the month</div>
+  </div>
+  <div class="section-tagline">Daily/Weekly keeps you moving. Monthly is where you <strong>re-aim.</strong></div>
+</div>
+
+<div class="steps-container">
+
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Creative fatigue check — CPM vs ROAS</div>
+      <div class="step-meta">Motion → Creative Fatigue Report · Line View · Last 4–6 weeks</div>
+      <div class="step-text">
+        <p><strong>CPM up, ROAS down</strong> = market problem (seasonality, auction pressure). Not creative fatigue. Shift budget or wait it out.</p>
+        <p><strong>Both trending down</strong> = creative fatigue confirmed. Trigger iteration refresh. If iterations fail → move to Adapt or Net New.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Diagnose market vs creative before briefing anything new. Wrong diagnosis = wasted budget. <strong>Market problem → don't brief more creative.</strong> Creative fatigue → trigger Iteration Ladder refresh.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Creator / actor comparison report</div>
+      <div class="step-meta">Motion → Comparative Analysis · Creator Comparison</div>
+      <div class="step-text">
+        <p>Sort creators by total revenue generated. Click into the top one — study their pattern. Which EPIC category? Which hook style? Which execution format?</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Book 2–3+ more content from top creator next month. Add their name and specific style notes to next sprint brief. Feed pattern into Building Blocks reference library.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Launch analysis — 4 tabs</div>
+      <div class="step-meta">Motion → Launch Analysis Report</div>
+      <div class="step-text">
+        <p>Set winning benchmark (ROAS + spend). Review all four tabs:</p>
+        <ul>
+          <li><strong>Launched</strong> — created but not yet live. Flag anything stalled.</li>
+          <li><strong>Scaled</strong> — ads that are spending meaningful budget.</li>
+          <li><strong>Winners</strong> — dissect why each won. EPIC tag, angle type, hook type, execution style.</li>
+          <li><strong>Opportunities</strong> — underperforming, worth fixing via Retention Graph Surgery.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Share with media buying team. Notes on each tab. For every Winner: log in Sprint Planning - Launched tab - 🧠 Execution Intelligence column. These patterns feed next month's briefs.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="step-title">Pull landing page language into ads</div>
+      <div class="step-meta">Motion → Group by Landing Page</div>
+      <div class="step-text">
+        <p>If one landing page dominates the winners, pull its strongest headline into the ad as a text overlay. Message-to-market match reduces friction — if the ad and the landing page speak the same language, CVR improves.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Test winning LP headline as ad text overlay (one variable — Rule of One). Feed LP language into the Quote Bank and into the angle brief for next batch.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="step-title">Confirm next month's 20/60/20 mix</div>
+      <div class="step-meta">The data tells you. The weekly analysis already showed what's working.</div>
+      <div class="step-text">
+        <p>The performance data from the past month determines the mix. The weekly analysis already surfaced what the account needs. Confirm and commit: More (20%) + Fix (60%) + [Net New / Adapt / Expand] (20% shared, split per weekly meeting).</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Confirm mix with media buyer. Brief production accordingly.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <div class="step-title">Recalibrate your benchmark numbers</div>
+      <div class="step-meta">Your Own Data · Update Personal Benchmark Card</div>
+      <div class="step-text">
+        <p>Filter spend ≥ 2–3× Target CPA → ROAS ≥ target. The <strong>median of those ads = your new benchmarks.</strong> Replace the starting-reference numbers in this workflow with your real data.</p>
+        <p>Update: CTR floor · CVR floor · Hold rate target · CPC acceptable range · Motion spend filter.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Update your benchmark card. The numbers in this workflow are placeholders — your account's real medians are the law. Do this every month. Don't skip it.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <div class="step-title">Day-of-Week Pacing Audit</div>
+      <div class="step-meta">Meta Ads Manager → Breakdown → Day of Week · Last 30–60 days · Open Pacing Tracker</div>
+      <div class="step-text">
+        <p>Export the last 30–60 days grouped strictly by day of week. Paste into the <strong>Day-of-Week Pacing Multiplier Tracker</strong> (columns B & C). The sheet auto-calculates variance vs your Northstar average and outputs a budget action for every day.</p>
+        <ul>
+          <li><strong>Surge Day (≥+20% vs avg):</strong> Increase CBO scaling budget +20% the night before.</li>
+          <li><strong>Pullback Day (≥–20% vs avg):</strong> Decrease CBO budget –20% the night before. Do NOT kill or brief a Fix iteration — this is the auction, not the creative.</li>
+          <li><strong>Baseline (±20%):</strong> Hold budget flat.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Set CBO daily budget rules for the upcoming month the night before each day. Drop one note: "June Pacing — Surge: Mon/Thu · Pullback: Sun · Baseline: rest." If an ad drops on a Pullback Day — ride it out. Reduce budget. Do not kill.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="start-label section-gap">↓ Start of every quarter</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- QUARTERLY                                  -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section-header section-quarterly">
+  <div class="section-title-block">
+    <div><span class="section-emoji">✦</span><span class="section-title">Quarterly</span></div>
+    <div class="section-sub">~2 hours · start of each quarter</div>
+  </div>
+  <div class="section-tagline">You're not diagnosing ads. You're asking if you're <strong>playing the right game.</strong></div>
+</div>
+
+<div class="steps-container">
+
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Re-classify the account phase</div>
+      <div class="step-meta">5-Phase Scaling Roadmap · Has the account grown?</div>
+      <div class="step-text">
+        <p>Check where the account sits in the 5-Phase Roadmap. Has revenue grown into a new phase? Each phase changes what you're allowed to focus on:</p>
+        <ul>
+          <li><strong>$0–10K/mo:</strong> Find the Trojan Horse. Everything is a test.</li>
+          <li><strong>$10K–100K:</strong> Protect and multiply the Trojan Horse. 80% iteration.</li>
+          <li><strong>$100K–500K:</strong> Systematically open new angles via EPIC.</li>
+          <li><strong>$500K–1.5M:</strong> Open new audiences with entirely new messaging.</li>
+          <li><strong>&gt;$1.5M:</strong> TAM expansion — new channels, new product lines.</li>
+        </ul>
+        <p>Remember: every phase is additive. You keep feeding the lower one when you go up.</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Re-allocate production hours based on new phase. Adjust weekly 20/60/20 mix accordingly. Update condition specificity target (General at low spend → Hyper-Specific at high spend).</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Full performance audit — patterns across time</div>
+      <div class="step-meta">Motion · Quarter view · EPIC audit + Building Blocks review</div>
+      <div class="step-text">
+        <p>Pull performance broken down by creative element — not overall results. Look at:</p>
+        <ul>
+          <li>Hook rate + Hold rate as diagnostic patterns across the quarter.</li>
+          <li>Which EPIC categories are over-represented in your winners? Which are absent?</li>
+          <li>Which Building Blocks (hook types, body types, CTA types) are appearing in top performers?</li>
+          <li>Which persona + condition combinations validated? Which failed repeatedly?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Translate audit findings into creative strategy direction for the quarter. Update Building Blocks reference library with new validated blocks. Refresh EPIC Audit Tally section in Master file - In-Depth Audit tab - PART 4. Feed into Q's Angle Generation pre-read.</div>
+    </div>
+  </div>
+
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Reset quarterly goals — ONE Northstar metric</div>
+      <div class="step-meta">Brand · Account-level planning</div>
+      <div class="step-text">
+        <p>Set the quarter's creative targets: concepts delivered · win rate · Northstar metric confirmation.</p>
+        <p><strong>ONE Northstar metric only. Never two. Never negotiate.</strong> ROAS for D2C ecom. CPA for apps/subs/leads. If someone gives you two — push back: "What's the ONE most important metric?"</p>
+      </div>
+    </div>
+    <div class="action-col">
+      <div class="action-label">Action</div>
+      <div class="action-text">Document the ONE Northstar. Set production targets. Confirm 5-Phase classification. Brief the quarter's strategic focus to media buyer. Align on which conditions are the priority battlefields.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="start-label section-gap"></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- THE 6 RULES                                -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="rules-block">
+  <h3>The 6 Rules That Sit Above All Cadences</h3>
+  <div class="rules-grid">
+    <div class="rule-card">
+      <div class="rule-num">#1</div>
+      <div class="rule-title">Rule of One</div>
+      <div class="rule-text">Change ONE variable when iterating (More/Fix). Only break this for Net New/Adapt hook testing (5 diverse hooks).</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">#2</div>
+      <div class="rule-title">Spend Before Judgment</div>
+      <div class="rule-text">No kill/keep decision below 2–3× Target CPA spend. Below that threshold is noise, not signal.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">#3</div>
+      <div class="rule-title">CPC → CVR, Always</div>
+      <div class="rule-text">Soft metrics first (Thumbstop, Hold). Then CPC gate. Then CTR or CVR split. Never reverse the order.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">#4</div>
+      <div class="rule-title">Market vs. Creative</div>
+      <div class="rule-text">CPM up + ROAS down = market problem. Both down = creative fatigue. Diagnose before briefing anything new.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">#5</div>
+      <div class="rule-title">One Northstar Metric</div>
+      <div class="rule-text">Never two. ROAS for D2C ecom. CPA for apps/subs/leads. If someone gives you two — push back.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">#6</div>
+      <div class="rule-title">Pacing Before Fix</div>
+      <div class="rule-text">Check Day-of-Week Pacing be
